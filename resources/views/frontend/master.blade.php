@@ -486,9 +486,9 @@
                                             <h4 class="product_title fs-sm ft-medium mb-0 lh-1">
                                                 {{ $cart->rel_to_product->product_name }}</h4>
                                             <p class="mb-2"><span
-                                                    class="text-dark ft-medium small">{{ $cart->size_id == null ? '' : $cart->rel_to_size->size_name }}</span>
+                                                    class="text-dark ft-medium small">{{ $cart->size_id == null ? 'NA' : $cart->rel_to_size->size_name }}</span>
                                                 {{ $cart->size_id == null ? '' : ',' }}<span
-                                                    class="text-dark small">{{ $cart->color_id == null ? '' : $cart->rel_to_color->color_name }}</span>
+                                                    class="text-dark small">{{ $cart->color_id == null ? 'NA' : $cart->rel_to_color->color_name }}</span>
                                             </p>
                                             <h4 class="fs-md ft-medium mb-0 lh-1">Tk
                                                 {{ $cart->rel_to_product->after_discount }} x {{ $cart->quantity }}
@@ -514,8 +514,8 @@
 
                         <div class="cart_action px-3 py-3">
                             <div class="form-group">
-                                <button type="button" class="btn d-block full-width btn-dark-light">View
-                                    Cart</button>
+                                <a href="{{route('cart')}}" type="button" class="btn d-block full-width btn-dark-light">View
+                                    Cart</a>
                             </div>
                         </div>
 

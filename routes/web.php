@@ -99,6 +99,7 @@ Route::post('/cart/store', [CartController::class, 'cart_store'])->name('cart.st
 Route::get('/cart/remove/{cart_id}', [CartController::class, 'remove_cart'])->name('remove.cart');
 Route::get('/clear/cart', [CartController::class, 'clear_cart'])->name('clear.cart');
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::post('/cart/update', [CartController::class, 'update_cart'])->name('update.cart');
 
 
 
