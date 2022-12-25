@@ -9,50 +9,51 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    function cart_store(Request $request){
+    function cart_store(Request $request)
+    {
         // print_r($request->all());
         if (Auth::guard('customerlogin')->check()) {
             Cart::insert([
-                'customer_id'=> Auth::guard('customerlogin')->id(),
-                'product_id'=> $request->product_id,
-                'size_id'=> $request->size_id,
-                'color_id'=> $request->color_id,
-                'quantity'=> $request->quantity,
-                'created_at'=> Carbon::now(),
+                'customer_id' => Auth::guard('customerlogin')->id(),
+                'product_id' => $request->product_id,
+                'size_id' => $request->size_id,
+                'color_id' => $request->color_id,
+                'quantity' => $request->quantity,
+                'created_at' => Carbon::now(),
             ]);
 
             return back()->with('cart_added', 'Cart added successfully');
-        } 
-        else {
+        } else {
             return redirect()->route('customer.register.login')->with('login', 'Please login to Add Cart!!');
         }
     }
 
-    function remove_cart($cart_id){
+    function remove_cart($cart_id)
+    {
         Cart::find($cart_id)->delete();
         return back();
-
     }
-    function clear_cart(){
+    function clear_cart()
+    {
         Cart::where('customer_id', Auth::guard('customerlogin')->id())->delete();
         return back();
-
     }
 
-    function cart(){
+    function cart()
+    {
         $carts = Cart::where('customer_id', Auth::guard('customerlogin')->id())->get();
         return view('frontend.cart', [
-            'carts'=>$carts,
+            'carts' => $carts,
         ]);
     }
 
-    function update_cart(Request $request){
-foreach ($request->quantity as $cart_id => $quantity) {
-    Cart::find($cart_id)->update([
-        'quantity' => $quantity
-    ]);
-
-    return back();
-}
+    function update_cart(Request $request)
+    {
+        foreach ($request->quantity as $cart_id => $quantity) {
+            Cart::find($cart_id)->update([
+                'quantity' => $quantity
+            ]);
+        }
+        return back();
     }
 }

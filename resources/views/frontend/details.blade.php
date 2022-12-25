@@ -79,7 +79,32 @@
                                 <p class="d-flex align-items-center mb-0 text-dark ft-medium">Color:</p>
                                 <div class="text-left">
 
+                                    @php
+                                        $color = null;
+                                    @endphp
                                     @foreach ($available_colors as $colors)
+                                        @if ($colors->rel_to_color->color_code == null)
+                                            <h5 class="text-danger">Color Not available</h5>
+                                            <input type="hidden" value="1" name="color_id">
+                                        @else
+                                            <div class="form-check form-option form-check-inline mb-1">
+                                                <input class="form-check-input color_id"
+                                                    value="{{ $colors->rel_to_color->id }}" type="radio" name="color_id"
+                                                    id="white{{ $colors->rel_to_color->id }}">
+                                                <label style="background: {{ $colors->rel_to_color->color_code }}"
+                                                    class="form-option-label rounded-circle"
+                                                    for="white{{ $colors->rel_to_color->id }}"><span
+                                                        class="form-option-color rounded-circle"></span></label>
+                                            </div>
+                                        @endif
+
+                                        @php
+                                            $color = $colors->rel_to_color->color_code;
+                                        @endphp
+                                    @endforeach
+
+
+                                    {{-- @foreach ($available_colors as $colors)
                                         @if ($colors->rel_to_color->color_name == 'NA')
                                             <h5 class="text-danger">Color Not available</h5>
                                         @else
@@ -93,13 +118,13 @@
                                                         class="form-option-color rounded-circle"></span></label>
                                             </div>
                                         @endif
-                                    @endforeach
+                                    @endforeach --}}
 
 
                                 </div>
                             </div>
 
-                            <div class="prt_04 mb-4">
+                            {{-- <div class="prt_04 mb-4">
                                 <p class="d-flex align-items-center mb-0 text-dark ft-medium">Size:</p>
                                 <div class="text-left pb-0 pt-2 size_id">
                                     @if ($available_sizes == 1)
@@ -112,6 +137,40 @@
                                                 <label class="form-option-label"
                                                     for="size{{ $size->id }}">{{ $size->size_name }}</label>
                                             </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div> --}}
+
+                            <div class="prt_04 mb-4">
+                                <p class="d-flex align-items-center mb-0 text-dark ft-medium">Size:</p>
+                                <div class="text-left pb-0 pt-2 size_id">
+                                    @if ($color != null)
+                                        @foreach ($sizes as $size)
+                                            <div class="form-check size-option form-option form-check-inline mb-2">
+                                                <input class="form-check-input" value="{{ $size->id }}" type="radio"
+                                                    name="size_id" id="size{{ $size->id }}">
+                                                <label class="form-option-label"
+                                                    for="size{{ $size->id }}">{{ $size->size_name }}</label>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        @foreach (App\Models\Inventory::where('product_id', $product_info->first()->id)->get() as $size)
+                                            @if ($size->rel_to_size->id == 1)
+                                                <div class="form-check size-option form-option form-check-inline mb-2">
+                                                    <input class="form-check-input" value="{{ $size->id }}"
+                                                        type="radio" name="size_id" id="size{{ $size->id }}">
+                                                    <label class="form-option-label"
+                                                        for="size{{ $size->id }}">{{ $size->size_name }}</label>
+                                                </div>
+                                                @else
+                                                <div class="form-check size-option form-option form-check-inline mb-2">
+                                                    <input class="form-check-input" value="{{ $size->id }}"
+                                                        type="radio" name="size_id" id="size{{ $size->id }}">
+                                                    <label class="form-option-label"
+                                                        for="size{{ $size->id }}">{{ $size->size_name }}</label>
+                                                </div>
+                                            @endif
                                         @endforeach
                                     @endif
                                 </div>

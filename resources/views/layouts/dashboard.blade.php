@@ -994,6 +994,14 @@
                             <li><a href="{{ route('product.variation') }}">Product Variation</a></li>
                         </ul>
                     </li>
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                            <i class="flaticon-381-television"></i>
+                            <span class="nav-text">Coupon</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('coupon') }}">Add Coupon</a></li>
+                        </ul>
+                    </li>
 
                 </ul>
                 <div class="add-menu-sidebar">

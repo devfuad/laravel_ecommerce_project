@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\CustomerLoginController;
 use App\Http\Controllers\CustomerRegisterController;
 use App\Http\Controllers\HomeController;
@@ -101,7 +102,10 @@ Route::get('/clear/cart', [CartController::class, 'clear_cart'])->name('clear.ca
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::post('/cart/update', [CartController::class, 'update_cart'])->name('update.cart');
 
-
+//coupon
+Route::get('/coupon', [CouponController::class, 'coupon'])->name('coupon');
+Route::post('/coupon/store', [CouponController::class, 'coupon_store'])->name('coupon.store');
+Route::get('/coupon/delete/{coupon_id}', [CouponController::class, 'coupon_delete'])->name('coupon.delete');
 
 
 
