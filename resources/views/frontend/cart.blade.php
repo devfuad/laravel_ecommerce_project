@@ -92,11 +92,16 @@
 
             <div class="col-12 col-md-7">
                 <!-- Coupon -->
-                <form class="mb-7 mb-md-0">
+                @if ($message)
+                    <div class="alert alert-warning">{{ $message }}</div>
+                @endif
+                <form class="mb-7 mb-md-0" action="{{ route('cart') }}" method="GET">
+                    @csrf
                     <label class="fs-sm ft-medium text-dark">Coupon code:</label>
                     <div class="row form-row">
                         <div class="col">
-                            <input class="form-control" type="text" placeholder="Enter coupon code*">
+                            <input class="form-control" value="{{ @$_GET['coupon'] }}" name="coupon" type="text"
+                                placeholder="Enter coupon code*">
                         </div>
                         <div class="col-auto">
                             <button class="btn btn-dark" type="submit">Apply</button>
@@ -113,13 +118,27 @@
                 <div class="card-body">
                     <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
                         <li class="list-group-item d-flex text-dark fs-sm ft-regular">
-                            <span>Subtotal</span> <span class="ml-auto text-dark ft-medium">TK {{$sub_total}}</span>
+                            <span>Subtotal</span> <span class="ml-auto text-dark ft-medium">TK {{ $sub_total }}</span>
+                        </li>
+
+                        @if ($type == 1)
+                            @php
+                                $discount = ($sub_total * $discount) / 100;
+                                $total = $sub_total - $discount;
+                            @endphp
+                        @else
+                            @php
+                                $total = $sub_total - $discount;
+                            @endphp
+                        @endif
+
+
+                        <li class="list-group-item d-flex text-dark fs-sm ft-regular">
+                            <span>Discount</span> <span class="ml-auto text-dark ft-medium">TK {{ $discount }}</span>
                         </li>
                         <li class="list-group-item d-flex text-dark fs-sm ft-regular">
-                            <span>Discount</span> <span class="ml-auto text-dark ft-medium">$10.10</span>
-                        </li>
-                        <li class="list-group-item d-flex text-dark fs-sm ft-regular">
-                            <span>Total</span> <span class="ml-auto text-dark ft-medium">$108.22</span>
+                            <span>Total</span> <span class="ml-auto text-dark ft-medium">TK
+                                {{ $total }}</span>
                         </li>
                         <li class="list-group-item fs-sm text-center">
                             Shipping cost calculated at Checkout *
@@ -128,7 +147,7 @@
                 </div>
             </div>
 
-            <a class="btn btn-block btn-dark mb-3" href="checkout.html">Proceed to Checkout</a>
+            <a class="btn btn-block btn-dark mb-3" href="{{route('checkout')}}">Proceed to Checkout</a>
 
             <a class="btn-link text-dark ft-medium" href="shop.html">
                 <i class="ti-back-left mr-2"></i> Continue Shopping

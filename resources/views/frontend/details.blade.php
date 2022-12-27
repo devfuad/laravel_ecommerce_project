@@ -84,8 +84,15 @@
                                     @endphp
                                     @foreach ($available_colors as $colors)
                                         @if ($colors->rel_to_color->color_code == null)
-                                            <h5 class="text-danger">Color Not available</h5>
-                                            <input type="hidden" value="1" name="color_id">
+                                        <div class="form-check form-option form-check-inline mb-1">
+                                            <input class="form-check-input color_id"
+                                                value="{{ $colors->rel_to_color->id }}" type="radio" name="color_id"
+                                                id="white{{ $colors->rel_to_color->id }}">
+                                            <label style="background: {{ $colors->rel_to_color->color_code }}"
+                                                class="form-option-label rounded-circle"
+                                                for="white{{ $colors->rel_to_color->id }}"><span
+                                                    class="form-option-color rounded-circle">NA</span></label>
+                                        </div>
                                         @else
                                             <div class="form-check form-option form-check-inline mb-1">
                                                 <input class="form-check-input color_id"
