@@ -128,6 +128,7 @@
                             @endphp
                         @else
                             @php
+                                $discount = $discount; 
                                 $total = $sub_total - $discount;
                             @endphp
                         @endif
@@ -146,6 +147,14 @@
                     </ul>
                 </div>
             </div>
+
+            {{-- checkout_subtotal is the subtotal of checkout page but the total of cart page --}}
+                @php
+                    session([
+                        'discount' => $discount,
+                        'checkout_subtotal' => $total,
+                    ])
+                @endphp
 
             <a class="btn btn-block btn-dark mb-3" href="{{route('checkout')}}">Proceed to Checkout</a>
 

@@ -187,7 +187,7 @@
                   <div class="card-body">
                     <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
                       <li class="list-group-item d-flex text-dark fs-sm ft-regular">
-                        <span>Subtotal</span> <span class="ml-auto text-dark ft-medium">$98.12</span>
+                        <span>Subtotal</span> <span class="ml-auto text-dark ft-medium">TK {{session('checkout_subtotal')}}</span>
                       </li>
                       <li class="list-group-item d-flex text-dark fs-sm ft-regular">
                         <span>Charge</span> <span class="ml-auto text-dark ft-medium">$10.10</span>
