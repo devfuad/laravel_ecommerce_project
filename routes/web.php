@@ -111,6 +111,7 @@ Route::get('/coupon/delete/{coupon_id}', [CouponController::class, 'coupon_delet
 //checkout
 
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+Route::post('/getCity', [CheckoutController::class, 'getCity']);
 
 
 
