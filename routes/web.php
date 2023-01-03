@@ -54,7 +54,6 @@ Route::post('/pass/update', [UserController::class, 'pass_update'])->name('pass.
 Route::post('/photo/update', [UserController::class, 'photo_update'])->name('photo.update');
 
 // category 
-
 Route::get('/category', [CategoryController::class, 'category'])->name('category');
 Route::post('/category/store', [CategoryController::class, 'category_store'])->name('category.store');
 Route::get('/category/delete/{category_id}', [CategoryController::class, 'category_delete'])->name('category.delete');
@@ -64,13 +63,11 @@ Route::get('/category/edit/{category_id}', [CategoryController::class, 'category
 Route::post('/category/update', [CategoryController::class, 'category_update'])->name('category.update');
 
 // subcategory
-
 Route::get('/subcategory', [SubcategoryController::class, 'subcategory'])->name('subcategory');
 Route::post('/subcategory/store', [SubcategoryController::class, 'subcategory_store'])->name('subcategory.store');
 // Route::post('/getsubcategory', [SubcategoryController::class, 'getsubcategory'])
 
 // product
-
 Route::get('/add/product', [ProductController::class, 'add_product'])->name('add.product');
 Route::POST('/getsubcategory', [ProductController::class, 'getsubcategory']);
 Route::post('/product/store', [ProductController::class, 'product_store'])->name('product.store');
@@ -81,7 +78,6 @@ Route::get('/product/inventory/delete/{inventory_id}', [ProductController::class
 Route::get('/product/delete/{product_id}', [ProductController::class, 'product_delete'])->name('product.delete');
 
 //variation
-
 Route::get('/product/variation', [ProductController::class, 'product_variation'])->name('product.variation');
 Route::post('/add/color', [ProductController::class, 'add_color'])->name('add.color');
 Route::get('/color/delete/{color_id}', [ProductController::class, 'color_delete'])->name('color.delete');
@@ -89,12 +85,10 @@ Route::post('/add/size', [ProductController::class, 'add_size'])->name('add.size
 Route::get('/size/delete/{size_id}', [ProductController::class, 'size_delete'])->name('size.delete');
 
 //customer login/registration
-
 Route::get('/customer/register/login', [FrontendController::class, 'customer_register_login'])->name('customer.register.login');
 Route::post('/customer/store', [CustomerRegisterController::class, 'customer_store'])->name('customer.store');
 Route::post('/customer/login', [CustomerLoginController::class, 'customer_login'])->name('customer.login');
 Route::get('/customer/logout', [CustomerLoginController::class, 'customer_logout'])->name('customer.logout');
-
 
 //cart
 Route::post('/cart/store', [CartController::class, 'cart_store'])->name('cart.store');
@@ -109,9 +103,9 @@ Route::post('/coupon/store', [CouponController::class, 'coupon_store'])->name('c
 Route::get('/coupon/delete/{coupon_id}', [CouponController::class, 'coupon_delete'])->name('coupon.delete');
 
 //checkout
-
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 Route::post('/getCity', [CheckoutController::class, 'getCity']);
+Route::post('/order/store', [CheckoutController::class, 'order_store'])->name('order.store');
 
 
 

@@ -75,7 +75,7 @@
                             </div>
 
                             <div class="prt_04 mb-2">
-
+                                
                                 <p class="d-flex align-items-center mb-0 text-dark ft-medium">Color:</p>
                                 <div class="text-left">
 
@@ -131,6 +131,7 @@
                                     </div>
                                     <div class="col-12 col-lg">
                                         <!-- Submit -->
+                                        
                                         <button type="submit" class="btn btn-block custom-height bg-dark mb-2">
                                             <i class="lni lni-shopping-basket mr-2"></i>Add to Cart
                                         </button>

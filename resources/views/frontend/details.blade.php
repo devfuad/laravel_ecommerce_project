@@ -197,6 +197,8 @@
                                     </div>
                                     <div class="col-12 col-lg">
                                         <!-- Submit -->
+
+                                        
                                         <button type="submit" class="btn btn-block custom-height bg-dark mb-2">
                                             <i class="lni lni-shopping-basket mr-2"></i>Add to Cart
                                         </button>

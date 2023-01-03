@@ -14,20 +14,45 @@ class CartController extends Controller
     {
         // print_r($request->all());
         if (Auth::guard('customerlogin')->check()) {
-            Cart::insert([
-                'customer_id' => Auth::guard('customerlogin')->id(),
-                'product_id' => $request->product_id,
-                'size_id' => $request->size_id,
-                'color_id' => $request->color_id,
-                'quantity' => $request->quantity,
-                'created_at' => Carbon::now(),
+            $request->validate([
+                'color_id'=>'required',
+                'size_id'=>'required',
             ]);
 
-            return back()->with('cart_added', 'Cart added successfully');
-        } else {
+            // if ($request->color_id=='' && $request->size_id=='') {
+            //    $color_null = 1;
+            //    $size_null = 1;
+
+                // Cart::insert([
+                //     'customer_id' => Auth::guard('customerlogin')->id(),
+                //     'product_id' => $request->product_id,
+                //     'size_id' => $size_null,
+                //     'color_id' => $color_null,
+                //     'quantity' => $request->quantity,
+                //     'created_at' => Carbon::now(),
+                // ]);
+               
+
+            // }
+            // else {
+                Cart::insert([
+                    'customer_id' => Auth::guard('customerlogin')->id(),
+                    'product_id' => $request->product_id,
+                    'size_id' => $request->size_id,
+                    'color_id' => $request->color_id,
+                    'quantity' => $request->quantity,
+                    'created_at' => Carbon::now(),
+                ]);
+            
+             return back()->with('cart_added', 'Cart added successfully');
+            }
+          else {
             return redirect()->route('customer.register.login')->with('login', 'Please login to Add Cart!!');
-        }
+          }
+        
+    
     }
+
 
     function remove_cart($cart_id)
     {

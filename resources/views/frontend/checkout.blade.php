@@ -33,7 +33,8 @@
 
             <div class="row justify-content-between">
                 <div class="col-12 col-lg-7 col-md-12">
-                    <form>
+                    <form action="{{ route('order.store') }}" method="POST">
+                        @csrf
                         <h5 class="mb-4 ft-medium">Billing Details</h5>
                         <div class="row mb-2">
 
@@ -64,7 +65,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="phone" class="text-dark">Mobile Number *</label>
-                                    <input type="tel" name="mobile" class="form-control" placeholder="Mobile Number" />
+                                    <input type="tel" name="phone" class="form-control" placeholder="Mobile Number" />
                                 </div>
                             </div>
 
@@ -120,7 +121,7 @@
 
                         </div>
 
-                    </form>
+
                 </div>
 
                 <!-- Sidebar -->
@@ -181,15 +182,18 @@
                             <h6>Select Payment Method</h6>
                             <ul class="no-ul-list">
                                 <li>
-                                    <input id="c3" class="radio-custom" name="payment_method" type="radio">
+                                    <input id="c3" class="radio-custom" name="payment_method" type="radio"
+                                        value="1">
                                     <label for="c3" class="radio-custom-label">Cash on Delivery</label>
                                 </li>
                                 <li>
-                                    <input id="c4" class="radio-custom" name="payment_method" type="radio">
+                                    <input id="c4" class="radio-custom" name="payment_method" type="radio"
+                                        value="2">
                                     <label for="c4" class="radio-custom-label">Pay With SSLCommerz</label>
                                 </li>
                                 <li>
-                                    <input id="c5" class="radio-custom" name="payment_method" type="radio">
+                                    <input id="c5" class="radio-custom" name="payment_method" type="radio"
+                                        value="3">
                                     <label for="c5" class="radio-custom-label">Pay With Stripe</label>
                                 </li>
                             </ul>
@@ -205,17 +209,19 @@
                                             {{ session('checkout_subtotal') }}</span></span>
                                 </li>
                                 <li class="list-group-item d-flex text-dark fs-sm ft-regular">
-                                    <span>Charge</span> <span class="ml-auto text-dark ft-medium" id="charge"></span>
+                                    <span>Charge</span> <span class="ml-auto text-dark ft-medium" id="charge">0</span>
                                 </li>
                                 <li class="list-group-item d-flex text-dark fs-sm ft-regular">
-                                    <span>Total</span> <span class="ml-auto text-dark ft-medium" id="total"></span>
+                                    <span>Total</span> <span class="ml-auto text-dark ft-medium" id="total">0</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
 
-
-                    <a class="btn btn-block btn-dark mb-3" href="checkout.html">Place Your Order</a>
+                    <input type="hidden" value="{{ session('checkout_subtotal') }}" name="checkout_subtotal">
+                    <input type="hidden" value="{{ session('discount') }}" name="discount">
+                    <button class="btn btn-block btn-dark mb-3" type="submit">Place Your Order</button>
+                    </form>
                 </div>
 
             </div>
@@ -322,8 +328,8 @@
 
     <script>
         $(document).ready(function() {
-    $('#country_id').select2();
-    $('#city_id').select2();
-});
+            $('#country_id').select2();
+            $('#city_id').select2();
+        });
     </script>
 @endsection

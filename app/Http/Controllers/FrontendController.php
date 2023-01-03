@@ -49,6 +49,7 @@ class FrontendController extends Controller
         $available_colors = Inventory::where('product_id', $product_info->first()->id)->groupBy('color_id')->selectRaw('count(*) as total, color_id')->get();
         $sizes = Size::all();
         $available_sizes = Inventory::where('product_id', $product_info->first()->id)->first()->size_id;
+       
 
         
 
@@ -60,6 +61,7 @@ class FrontendController extends Controller
             'available_colors' => $available_colors,
             'sizes' => $sizes,
             'available_sizes' => $available_sizes,
+            
         ]);
     }
 
