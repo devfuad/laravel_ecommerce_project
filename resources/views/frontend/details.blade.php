@@ -76,7 +76,10 @@
 
                             <div class="prt_04 mb-2">
 
-                                <p class="d-flex align-items-center mb-0 text-dark ft-medium">Color:</p>
+                                <p class="d-flex align-items-center mb-0 text-dark ft-medium">Color: @error('color_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                </p>
                                 <div class="text-left">
 
                                     @php
@@ -84,15 +87,15 @@
                                     @endphp
                                     @foreach ($available_colors as $colors)
                                         @if ($colors->rel_to_color->color_code == null)
-                                        <div class="form-check form-option form-check-inline mb-1">
-                                            <input class="form-check-input color_id"
-                                                value="{{ $colors->rel_to_color->id }}" type="radio" name="color_id"
-                                                id="white{{ $colors->rel_to_color->id }}">
-                                            <label style="background: {{ $colors->rel_to_color->color_code }}"
-                                                class="form-option-label rounded-circle"
-                                                for="white{{ $colors->rel_to_color->id }}"><span
-                                                    class="form-option-color rounded-circle">NA</span></label>
-                                        </div>
+                                            <div class="form-check form-option form-check-inline mb-1">
+                                                <input class="form-check-input color_id"
+                                                    value="{{ $colors->rel_to_color->id }}" type="radio" name="color_id"
+                                                    id="white{{ $colors->rel_to_color->id }}">
+                                                <label style="background: {{ $colors->rel_to_color->color_code }}"
+                                                    class="form-option-label rounded-circle"
+                                                    for="white{{ $colors->rel_to_color->id }}"><span
+                                                        class="form-option-color rounded-circle">NA</span></label>
+                                            </div>
                                         @else
                                             <div class="form-check form-option form-check-inline mb-1">
                                                 <input class="form-check-input color_id"
@@ -150,7 +153,10 @@
                             </div> --}}
 
                             <div class="prt_04 mb-4">
-                                <p class="d-flex align-items-center mb-0 text-dark ft-medium">Size:</p>
+                                <p class="d-flex align-items-center mb-0 text-dark ft-medium">Size: @error('size_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                </p>
                                 <div class="text-left pb-0 pt-2 size_id">
                                     @if ($color != null)
                                         @foreach ($sizes as $size)
@@ -170,7 +176,7 @@
                                                     <label class="form-option-label"
                                                         for="size{{ $size->id }}">{{ $size->size_name }}</label>
                                                 </div>
-                                                @else
+                                            @else
                                                 <div class="form-check size-option form-option form-check-inline mb-2">
                                                     <input class="form-check-input" value="{{ $size->id }}"
                                                         type="radio" name="size_id" id="size{{ $size->id }}">
@@ -187,23 +193,25 @@
                                 <div class="form-row mb-7">
                                     <div class="col-12 col-lg-auto">
                                         <!-- Quantity -->
+
                                         <select class="mb-2 custom-select" name="quantity">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            @for ($i = 1; $i <= 20; $i++)
+                                                <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
                                         </select>
+                                        @if (session('total_stock'))
+                                            <strong class="text text-danger">{{ session('total_stock') }}</strong>
+                                        @endif
                                     </div>
+
                                     <div class="col-12 col-lg">
                                         <!-- Submit -->
-
-                                        
                                         <button type="submit" class="btn btn-block custom-height bg-dark mb-2">
                                             <i class="lni lni-shopping-basket mr-2"></i>Add to Cart
                                         </button>
 
                                     </div>
+
                         </form>
                         <div class="col-12 col-lg-auto">
                             <!-- Wishlist -->

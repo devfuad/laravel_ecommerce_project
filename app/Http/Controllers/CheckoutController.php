@@ -89,12 +89,16 @@ class CheckoutController extends Controller
                 Inventory::where('product_id', $cart->product_id)->where('color_id', $cart->color_id)->where('size_id', $cart->size_id)->decrement('quantity', $cart->quantity);
             }
 
+            $carts = Cart::where('customer_id', Auth::guard('customerlogin')->id())->delete();
+
             
 
             return back();
-        } elseif ($request->payment_method == 2) {
+        } 
+        elseif ($request->payment_method == 2) {
             echo "ssl";
-        } else {
+        } 
+        else {
             echo "stripe";
         }
     }
