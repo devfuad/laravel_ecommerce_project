@@ -43,7 +43,7 @@ class InvoiceMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'invoice.invoice',
+            view: 'view.frontend.invoice',
         );
     }
 
@@ -56,4 +56,8 @@ class InvoiceMail extends Mailable
     {
         return [];
     }
+
+//     public function build(){
+//         return $this->view('invoice');
+//     }
 }
