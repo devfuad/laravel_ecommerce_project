@@ -209,10 +209,10 @@
                                             {{ session('checkout_subtotal') }}</span></span>
                                 </li>
                                 <li class="list-group-item d-flex text-dark fs-sm ft-regular">
-                                    <span>Charge</span> <span class="ml-auto text-dark ft-medium" id="charge">0</span>
+                                    <span>Charge</span> <span class="ml-auto text-dark ft-medium">TK <span id="charge">0</span></span>
                                 </li>
                                 <li class="list-group-item d-flex text-dark fs-sm ft-regular">
-                                    <span>Total</span> <span class="ml-auto text-dark ft-medium" id="total">0</span>
+                                    <span>Total</span> <span class="ml-auto text-dark ft-medium" >TK <span id="total">{{ session('checkout_subtotal') }}</span></span>
                                 </li>
                             </ul>
                         </div>

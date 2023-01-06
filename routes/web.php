@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Auth;
 
 //frontend
 
-Route::get('/', [FrontendController::class, 'home']);
+Route::get('/', [FrontendController::class, 'home'])->name('index');
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
 // Route::get('/master', [FrontendController::class, 'master']);
 // Route::get('/index', [FrontendController::class, 'index']);
@@ -106,6 +106,7 @@ Route::get('/coupon/delete/{coupon_id}', [CouponController::class, 'coupon_delet
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 Route::post('/getCity', [CheckoutController::class, 'getCity']);
 Route::post('/order/store', [CheckoutController::class, 'order_store'])->name('order.store');
+Route::get('/order/success', [CheckoutController::class, 'order_success'])->name('order.success');
 
 
 
