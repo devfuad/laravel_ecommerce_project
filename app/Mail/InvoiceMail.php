@@ -4,10 +4,12 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\View\View;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Spatie\LaravelIgnition\Solutions\SolutionProviders\ViewNotFoundSolutionProvider;
 
 class InvoiceMail extends Mailable
 {
@@ -42,8 +44,10 @@ class InvoiceMail extends Mailable
      */
     public function content()
     {
+
+        
         return new Content(
-            view: 'view.name',
+            view: 'invoice.invoice',
         );
     }
 
