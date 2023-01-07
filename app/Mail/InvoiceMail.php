@@ -4,12 +4,10 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Contracts\View\View;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Spatie\LaravelIgnition\Solutions\SolutionProviders\ViewNotFoundSolutionProvider;
 
 class InvoiceMail extends Mailable
 {
@@ -20,9 +18,12 @@ class InvoiceMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+     public $data;
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -42,13 +43,18 @@ class InvoiceMail extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Content
      */
-    public function content()
-    {
+    // public function content()
+    // {
+    //     return new Content(
+    //         view: 'welcome',
+            
+    //     );
+    // }
 
-        
-        return new Content(
-            view: 'invoice.invoice',
-        );
+    public function build(){
+        return $this->view('welcome', [
+            'order_id' => $this->data,
+        ]);
     }
 
     /**

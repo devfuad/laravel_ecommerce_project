@@ -93,7 +93,7 @@ class CheckoutController extends Controller
 
             Mail::to($request->email)->send(new InvoiceMail($order_id));
 
-            // $carts = Cart::where('customer_id', Auth::guard('customerlogin')->id())->delete();
+            $carts = Cart::where('customer_id', Auth::guard('customerlogin')->id())->delete();
 
             
 
