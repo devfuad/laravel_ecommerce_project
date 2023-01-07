@@ -52,7 +52,7 @@ class InvoiceMail extends Mailable
     // }
 
     public function build(){
-        return $this->view('welcome', [
+        return $this->view('invoice.invoice', [
             'order_id' => $this->data,
         ]);
     }
