@@ -93,6 +93,29 @@ class CheckoutController extends Controller
 
             Mail::to($request->email)->send(new InvoiceMail($order_id));
 
+            //sms
+                $url = "https://bulksmsbd.net/api/smsapi";
+                $api_key = "3UVVsPwOHYnJupHHiLyd";
+                $senderid = "mfuad";
+                $number = $request->phone;
+                $message = "Congratulations! Your order has been successfully placed! Please ready TK: " . $request->subtotal+$request->charge;
+            
+                $data = [
+                    "api_key" => $api_key,
+                    "senderid" => $senderid,
+                    "number" => $number,
+                    "message" => $message
+                ];
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                $response = curl_exec($ch);
+                curl_close($ch);
+                return $response;
+
             $carts = Cart::where('customer_id', Auth::guard('customerlogin')->id())->delete();
 
             
@@ -117,6 +140,7 @@ class CheckoutController extends Controller
         }
         else{
             return view('frontend.404_page');
+            // abort('404');
         }
         
     }

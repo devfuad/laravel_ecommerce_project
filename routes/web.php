@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerLoginController;
 use App\Http\Controllers\CustomerRegisterController;
 use App\Http\Controllers\HomeController;
@@ -89,6 +90,8 @@ Route::get('/customer/register/login', [FrontendController::class, 'customer_reg
 Route::post('/customer/store', [CustomerRegisterController::class, 'customer_store'])->name('customer.store');
 Route::post('/customer/login', [CustomerLoginController::class, 'customer_login'])->name('customer.login');
 Route::get('/customer/logout', [CustomerLoginController::class, 'customer_logout'])->name('customer.logout');
+Route::get('/customer/profile', [CustomerController::class, 'customer_profile'])->name('customer.profile');
+Route::post('/customer/profile/update', [CustomerController::class, 'customer_profile_update'])->name('profile.update');
 
 //cart
 Route::post('/cart/store', [CartController::class, 'cart_store'])->name('cart.store');
