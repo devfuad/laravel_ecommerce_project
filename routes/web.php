@@ -92,6 +92,7 @@ Route::post('/customer/login', [CustomerLoginController::class, 'customer_login'
 Route::get('/customer/logout', [CustomerLoginController::class, 'customer_logout'])->name('customer.logout');
 Route::get('/customer/profile', [CustomerController::class, 'customer_profile'])->name('customer.profile');
 Route::post('/customer/profile/update', [CustomerController::class, 'customer_profile_update'])->name('profile.update');
+Route::get('/customer/order', [CustomerController::class, 'customer_order'])->name('customer.order');
 
 //cart
 Route::post('/cart/store', [CartController::class, 'cart_store'])->name('cart.store');
