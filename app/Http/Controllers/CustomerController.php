@@ -138,6 +138,6 @@ class CustomerController extends Controller
 
 
     function customer_order(){
-        return view()
+        return view('customer_order.blade.php');
     }
 }
