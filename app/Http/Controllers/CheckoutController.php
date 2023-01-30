@@ -114,7 +114,7 @@ class CheckoutController extends Controller
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
                 $response = curl_exec($ch);
                 curl_close($ch);
-                return $response;
+                // return $response;
 
             $carts = Cart::where('customer_id', Auth::guard('customerlogin')->id())->delete();
 
